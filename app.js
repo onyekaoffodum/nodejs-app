@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-  res.render('index', { title: "Welcome to Rushi Technologies Private Ltd" });
+  res.render('index', { title: "Welcome to Rushi Technologies" });
 });
 
 // REST API
