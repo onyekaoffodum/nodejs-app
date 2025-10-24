@@ -3,11 +3,11 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'Node-20.19.3'
+        nodejs 'Node-20.19.5' // Ensure this matches the name of the NodeJS installation in Jenkins
     }
 
     environment {
-        REMOTE_HOST = '172.31.27.188' // Replace with your server's IP or hostname
+        REMOTE_HOST = '172.31.31.169' // Replace with your server's IP or hostname
         REMOTE_USER = 'ec2-user'
         REMOTE_PATH = '/home/ec2-user/nodejs-app'
         SSH_CREDENTIALS = 'NodeServerSSHKey'
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 sshagent([env.SSH_CREDENTIALS]) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no  $REMOTE_USER@$REMOTE_HOST "mkdir -p $REMOTE_PATH"
+                        ssh -o StrictHostKeyChecking=no  $REMOTE_USER@$REMOTE_HOST "mkdir -p $REMOTE_PATH || true"
                         rsync -avz --exclude=node_modules --exclude=.git ./ $REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH/
                     '''
                 }
