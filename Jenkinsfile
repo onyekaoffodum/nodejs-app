@@ -7,7 +7,7 @@ pipeline {
     }
 
     options {
-        discardOldBuilds(retentionDays: 5, maxToKeep: 5)
+        buildDiscarder(logRotator(numToKeepStr: '5'))
         disableConcurrentBuilds()
         timeout(time: 30, unit: 'MINUTES')
     }
