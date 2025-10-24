@@ -7,7 +7,7 @@ pipeline {
     }
 
     options {
-        ansiColor('xterm')
+        discardOldBuilds(retentionDays: 5, maxToKeep: 5)
         disableConcurrentBuilds()
         timeout(time: 30, unit: 'MINUTES')
     }
