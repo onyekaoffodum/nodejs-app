@@ -67,6 +67,7 @@ pipeline {
     post {
         always {
             sendEmail(currentBuild.currentResult,"sandieji@rocketmail.com")
+            sendSlack(currentBuild.currentResult,"lic-app-team")  
             cleanWs()
         }    
     }
